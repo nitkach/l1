@@ -10,6 +10,7 @@ const N: usize = 50;
 fn main() {
     let array = (1..=N).collect::<Vec<_>>();
 
+    // scope allows scoped threads to borrow non-'static data
     std::thread::scope(|s| {
         for num in array {
             s.spawn(move || println!("{}^2 = {}", num, num * num));
