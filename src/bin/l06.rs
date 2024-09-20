@@ -14,7 +14,7 @@ async fn main() {
     let cancellation_token = CancellationToken::new();
 
     // spawn a task that sends values
-    {
+    let sender_join = {
         let sender = sender.clone();
         let cancellation_token = cancellation_token.clone();
         let mut counter = 0;
@@ -37,12 +37,12 @@ async fn main() {
     };
 
     // spawn a task that receives values
-    tokio::spawn(async move {
+    let receiver_join = tokio::spawn(async move {
         loop {
             if let Some(num) = receiver.recv().await {
                 println!("Received: {num}");
             } else {
-                println!("All senders dropped - channel is closed and more messages left.");
+                println!("All senders dropped - channel is closed and no more messages left.");
                 break;
             }
         }
@@ -58,4 +58,7 @@ async fn main() {
     cancellation_token.cancel();
 
     sleep(Duration::from_secs(1)).await;
+
+    sender_join.await.unwrap();
+    receiver_join.await.unwrap();
 }

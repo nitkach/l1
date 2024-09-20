@@ -6,7 +6,10 @@ version = "0.1.0"
 [dependencies]
 bit-set           = "0.8.0"
 crossbeam-channel = "0.5.13"
+dashmap = "6.1.0"
 expect-test       = "1.5.0"
+itertools = "0.13.0"
 num-bigint        = "0.4.6"
+parking_lot = "0.12.3"
 tokio             = { version = "1.40.0", features = ["full"] }
 tokio-util        = "0.7.12"
