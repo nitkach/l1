@@ -3,13 +3,14 @@
 struct LegacyLibrary;
 
 impl LegacyLibrary {
-    fn perform_legacy_operation(&self) {
+    #[allow(clippy::unused_self)]
+    fn perform_legacy_operation(self) {
         println!("Legacy operation");
     }
 }
 
 trait Modern {
-    fn modern_operation(&self);
+    fn modern_operation(self);
 }
 
 struct Adapter {
@@ -17,7 +18,7 @@ struct Adapter {
 }
 
 impl Modern for Adapter {
-    fn modern_operation(&self) {
+    fn modern_operation(self) {
         print!("Adapter: ");
         self.legacy.perform_legacy_operation();
     }

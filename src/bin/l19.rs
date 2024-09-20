@@ -7,12 +7,12 @@ fn reverse_words(string: &str) -> String {
     reversed.join(" ")
 }
 
-fn main() {}
+fn main() {
+    println!("{}", reverse_words("foo bar-bar baz qux"));
+}
 
 #[cfg(test)]
 mod tests {
-    use std::fmt::Debug;
-
     use expect_test::{expect, Expect};
 
     use super::*;

@@ -7,7 +7,7 @@ use std::{
 /// two numeric variables a, b, the value of which is > 2^20.
 use num_bigint::ToBigUint;
 
-fn operations<T>(a: T, b: T)
+fn operations<T>(a: &T, b: &T)
 where
     T: Add + Sub + Mul + Div + Clone + Display,
     <T as Add>::Output: Display,
@@ -37,7 +37,7 @@ fn calculate_u64(a: u64, b: u64) {
     println!("====== calculate ======");
     println!("a = {a}");
     println!("b = {b}");
-    operations(a, b);
+    operations(&a, &b);
 }
 
 fn calculate_bignum(a: u64, b: u64) {
@@ -52,7 +52,7 @@ fn calculate_bignum(a: u64, b: u64) {
     println!("====== calculate_bignum ======");
     println!("a = {a}");
     println!("b = {b}");
-    operations(a, b);
+    operations(&a, &b);
     println!("==============================");
 }
 

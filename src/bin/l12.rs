@@ -4,7 +4,7 @@ fn sets_intersection<T: Eq + Hash + Clone>(
     first_set: &HashSet<T>,
     second_set: &HashSet<T>,
 ) -> HashSet<T> {
-    first_set.intersection(&second_set).cloned().collect()
+    first_set.intersection(second_set).cloned().collect()
 }
 
 fn main() {

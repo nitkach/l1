@@ -12,7 +12,17 @@ fn remove_nth_2<T>(items: Vec<T>, nth: usize) -> Vec<T> {
         .collect()
 }
 
-fn main() {}
+fn main() {
+    let mut array = (1..=10).collect::<Vec<_>>();
+
+    println!("{array:?}");
+
+    remove_nth_1(&mut array, 3);
+    println!("{array:?}");
+
+    array = remove_nth_2(array, 3);
+    println!("{array:?}");
+}
 
 #[cfg(test)]
 mod tests {

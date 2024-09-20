@@ -15,7 +15,7 @@ fn binary_search_2<T: Ord + Debug>(items: &[T], target: &T) -> Option<usize> {
         let middle = left + (right - left) / 2;
 
         let item = items.get(middle).unwrap();
-        match dbg!(target.cmp(item)) {
+        match target.cmp(item) {
             std::cmp::Ordering::Less => right = middle.checked_sub(1)?,
             std::cmp::Ordering::Equal => return Some(middle),
             std::cmp::Ordering::Greater => left = middle.checked_add(1)?,
@@ -24,7 +24,21 @@ fn binary_search_2<T: Ord + Debug>(items: &[T], target: &T) -> Option<usize> {
     None
 }
 
-fn main() {}
+fn main() {
+    let array = (1..=10).collect::<Vec<_>>();
+
+    let number = 3;
+
+    println!(
+        "array[{}] = {number}",
+        binary_search(&array, &number).unwrap()
+    );
+
+    println!(
+        "array[{}] = {number}",
+        binary_search_2(&array, &number).unwrap()
+    );
+}
 
 #[cfg(test)]
 mod tests {

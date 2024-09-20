@@ -12,7 +12,7 @@ impl Point {
         Self { x, y }
     }
 
-    fn distance(&self, other: Self) -> f64 {
+    fn distance(&self, other: &Self) -> f64 {
         ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).powf(0.5)
     }
 }
@@ -32,5 +32,5 @@ fn main() {
     let a = Point::new(2.0, -1.0);
     let b = Point::new(-3.0, 5.0);
 
-    println!("Distance between a and b: {}", a.distance(b));
+    println!("Distance between a and b: {}", a.distance(&b));
 }
