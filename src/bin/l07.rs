@@ -21,6 +21,7 @@ fn closing_scoped_threads() {
         loop {
             if sender.send(data).is_err() {
                 println!("Receiver of a channel is disconnected - the channel is closed");
+                break;
             }
             data += 1;
 
@@ -51,6 +52,7 @@ fn closing_joined_threads() {
     loop {
         if sender.send(data).is_err() {
             println!("Receiver of a channel is disconnected - the channel is closed");
+            break;
         }
         data += 1;
 
@@ -86,6 +88,7 @@ async fn closing_tasks() {
     loop {
         if sender.send(data).await.is_err() {
             println!("Receiver of a channel is disconnected - the channel is closed");
+            break;
         }
         data += 1;
 
@@ -126,6 +129,7 @@ async fn cancellation_token_tasks() {
     loop {
         if sender.send(data).await.is_err() {
             println!("Receiver of a channel is disconnected - the channel is closed");
+            break;
         }
         data += 1;
 

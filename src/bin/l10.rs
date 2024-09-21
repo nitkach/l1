@@ -25,6 +25,7 @@ async fn numbers_pipeline(length: u32) {
                     println!(
                         "Reader receivers dropped - channel is closed and no more messages left."
                     );
+                    break;
                 };
             } else {
                 println!("Writer senders dropped - channel is closed and no more messages left.");
