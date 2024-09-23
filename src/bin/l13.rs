@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use std::io::BufRead;
 
 /// A sequence of lines is received at the input through the standard
@@ -6,21 +7,12 @@ use std::io::BufRead;
 /// output stream, eliminating repetitions, without using `std::collections::*`.
 
 fn main() {
-    let mut buf = String::new();
-    let handler = std::io::stdin().lock();
+    let handle = std::io::stdin().lock();
 
-    for line in handler.lines() {
-        match line {
-            Ok(string) => {
-                if string != buf {
-                    println!("stdout: {string}");
-                    buf = string;
-                }
-            }
-            Err(err) => {
-                println!("Error occured: {err}");
-                return;
-            }
-        };
+    if let Err(err) = handle
+        .lines()
+        .process_results(|iter| iter.dedup().for_each(|string| println!("{string}")))
+    {
+        panic!("{err}");
     }
 }
